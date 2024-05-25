@@ -1,3 +1,7 @@
+use frontend;
+
 fn main() {
-    println!("Hello, world!");
+    println!("TagVault");
+    let tags = frontend::parse_tags_input();
+    dbg!(tags);
 }

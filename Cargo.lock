@@ -5,3 +5,14 @@ version = 3
 [[package]]
 name = "TagVault"
 version = "0.1.0"
+dependencies = [
+ "frontend",
+]
+
+[[package]]
+name = "backend"
+version = "0.1.0"
+
+[[package]]
+name = "frontend"
+version = "0.1.0"
