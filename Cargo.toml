@@ -7,6 +7,8 @@ edition = "2021"
 
 [dependencies]
 frontend = { path = "frontend" }
+backend = { path = "backend" }
+serde_json = "1.0.117"
 
 [workspace]
 members = [ 
