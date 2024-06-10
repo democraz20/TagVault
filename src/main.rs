@@ -13,11 +13,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
     let tags = frontend::parse_tags_input();
     
     let jsontext = fs::read_to_string(jsonpath)?;
+    let jsonobj: backend::savefile = serde_json::from_str(&jsontext)?;
 
-    let jsonobj: backend::savefile = serde_json::frm_str(&jsontext)?;
+    if tags.len() == 1 {
+        let files = backend::get_files_from_tag(tags[0].to_string(), &jsonobj);
+        dbg!(files);
+    } else if tags.len() > 1 {
+        //
+        
+    } else {}
 
     dbg!(jsonobj);
-
     dbg!(tags);
     Ok(())
 }
