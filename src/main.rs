@@ -19,9 +19,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
         let files = backend::get_files_from_tag(tags[0].to_string(), &jsonobj);
         dbg!(files);
     } else if tags.len() > 1 {
-        //
-        
-    } else {}
+        //get starting vec
+        let mut leftovervec: Vec<String> = vec![];
+
+        let mut startingfiles = backend::get_files_from_tag(tags[0].to_string(), &jsonobj);
+        for i in tags.iter().skip(1) {
+            let followfiles = backend::get_files_from_tag(i.to_string(), &jsonobj);
+            let left = backend::vector_intersection(&startingfiles, &followfiles);
+            startingfiles = left.clone();
+            if left.len() == 0 {
+                println!("no matches for supplied tags");
+                break;
+            }
+        }
+        println!("Result: {:?}", startingfiles);
+    } else if tags.len() == 0 {
+        println!("No tags supplied!");
+    } else {
+        println!("Fatal error: tags count cant be lower than 0");
+    }
 
     dbg!(jsonobj);
     dbg!(tags);
