@@ -16,15 +16,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
     let jsonobj: backend::savefile = serde_json::from_str(&jsontext)?;
 
     if tags.len() == 1 {
-        let files = backend::get_files_from_tag(tags[0].to_string(), &jsonobj);
+        let files = backend::get_content_from_tag(tags[0].to_string(), &jsonobj);
         dbg!(files);
     } else if tags.len() > 1 {
         //get starting vec
         let mut leftovervec: Vec<String> = vec![];
 
-        let mut startingfiles = backend::get_files_from_tag(tags[0].to_string(), &jsonobj);
+        let mut startingfiles = backend::get_content_from_tag(tags[0].to_string(), &jsonobj);
         for i in tags.iter().skip(1) {
-            let followfiles = backend::get_files_from_tag(i.to_string(), &jsonobj);
+            let followfiles = backend::get_content_from_tag(i.to_string(), &jsonobj);
             let left = backend::vector_intersection(&startingfiles, &followfiles);
             startingfiles = left.clone();
             if left.len() == 0 {
