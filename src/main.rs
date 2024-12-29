@@ -1,5 +1,14 @@
 use std::io::{self, Write};
 
+mod store;
+mod layer;
+
+#[cfg(target_os = "windows")]
+const OS_STORE_PATH: &str = ".";
+
+#[cfg(target_os = "linux")]
+const OS_STORE_PATH: &str = ".";
+
 fn main() -> Result<(), Box<dyn std::error::Error>>{
     //cmdline mode
     println!("No args passed, running in cmdline mode");
