@@ -1,5 +1,8 @@
 use std::io::{self, Write};
 
+use base64::{engine::general_purpose, Engine as _};
+use layer::misc;
+
 mod store;
 mod layer;
 

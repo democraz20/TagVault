@@ -1,12 +1,13 @@
 use serde::{Deserialize, Serialize};
+use base64::{engine::general_purpose, Engine as _};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct vault {
-    vaultname: String,
-    vaultdesc: String,
+    pub vaultname: String,
+    pub vaultdesc: String,
 
-    hash_locations: Vec<String>,
-    tag_list: Vec<String>
+    pub hash_locations: Vec<String>,
+    pub tag_list: Vec<String>
 }
 
 #[derive(Serialize, Deserialize)]
